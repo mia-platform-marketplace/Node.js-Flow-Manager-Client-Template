@@ -1,0 +1,60 @@
+{
+  "mainCases": {
+    "success": {
+      "description": "200 OK - request fulfilled",
+      "request": {
+        "method": "GET",
+        "url": "/ping/sagaId-397842"
+      },
+      "expectedResponse": {
+        "status": 200,
+        "payload": {
+          "sagaId": "sagaId-397842",
+          "msg": "pong"
+        }
+      },
+      "expectedEvents": [
+        {
+          "event": "pong",
+          "sagaId": "sagaId-397842",
+          "metadata": {
+            "msg": "this is the way"
+          }
+        }
+      ]
+    },
+    "missingSagaId": {
+      "description": "400 OK - request fulfilled",
+      "request": {
+        "method": "GET",
+        "url": "/ping/"
+      },
+      "expectedResponse": {
+        "status": 400,
+        "payload": {
+          "sagaId": null,
+          "msg": "out"
+        }
+      },
+      "expectedEvents": []
+    }
+  },
+  "edgeCases": {
+    "emitError": {
+      "description": "400 KO - request failed",
+      "request": {
+        "method": "GET",
+        "url": "/ping/sagaId-397842"
+      },
+      "expectedResponse": {
+        "status": 400,
+        "payload": {
+          "sagaId": "sagaId-397842",
+          "msg": "net"
+        }
+      },
+      "onErrorCommitted": false,
+      "expectedEvents": []
+    }
+  }
+}

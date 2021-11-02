@@ -1,0 +1,31 @@
+{
+  "mainCases": {
+    "dataAreReturned": {
+      "description": "command is successful",
+      "sagaId": "sagaId-397842",
+      "metadata": {
+        "quote": "Fly, you fools!"
+      },
+      "expectedEvents": [
+        {
+          "event": "returnedSame",
+          "sagaId": "sagaId-397842",
+          "metadata": {
+            "quote": "Fly, you fools!"
+          }
+        }
+      ]
+    }
+  },
+  "edgeCases": {
+    "errorEmittingEvent": {
+      "description": "command failed",
+      "sagaId": "sagaId-397842",
+      "metadata": {
+        "quote": "Fly, you fools!"
+      },
+      "onErrorCommitted": false,
+      "expectedEvents": []
+    }
+  }
+}
