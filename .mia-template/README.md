@@ -8,7 +8,7 @@
 
 To develop the service locally you need:
 
-- Node 10+
+- Node 14+
 
 To setup node, please if possible try to use [nvm][nvm], so you can manage multiple
 versions easily. Once you have installed nvm, you can go inside the directory of the project and simply run
@@ -62,24 +62,53 @@ To contribute to the project, please be mindful for this simple rules:
 4. Always commit in english
 5. Once you are happy with your branch, open a [Merge Request][merge-request]
 
-## Run the Docker Image
+## Running Test locally
 
-If you are interested in the docker image you can get one and run it locally with this commands:
+### Integration
 
-```shell
-docker pull %NEXUS_HOSTNAME%/mia_template_image_name_placeholder:latest
-set -a
-source .env
-docker run --name mia_template_service_name_placeholder \
-  -e USERID_HEADER_KEY=${USERID_HEADER_KEY} \
-  -e GROUPS_HEADER_KEY=${GROUPS_HEADER_KEY} \
-  -e CLIENTTYPE_HEADER_KEY=${CLIENTTYPE_HEADER_KEY} \
-  -e BACKOFFICE_HEADER_KEY=${BACKOFFICE_HEADER_KEY} \
-  -e MICROSERVICE_GATEWAY_SERVICE_NAME=${MICROSERVICE_GATEWAY_SERVICE_NAME} \
-  -e LOG_LEVEL=trace \
-  -p 3000:3000 \
-  --detach \
-  %NEXUS_HOSTNAME%/mia_template_image_name_placeholder
+#### Create a network connection
+
+```
+docker network create app --driver bridge
+```
+
+#### Pull the images
+```
+docker pull bitnami/zookeeper
+docker pull bitnami/kafka
+```
+
+#### Run the images
+```
+docker run -d --rm --name zookeeper --network=app -e ALLOW_ANONYMOUS_LOGIN=yes -p 2180:2181 bitnami/zookeeper
+
+docker run --rm \
+  --network app-tier \
+  --name=kafka \
+  -e KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181 \
+  -e KAFKA_CFG_ADVERTISED_LISTENERS='PLAINTEXT://127.0.0.1:9092,INTERNAL://localhost:9093' \
+  -e KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP='PLAINTEXT:PLAINTEXT,INTERNAL:PLAINTEXT' \
+  -e KAFKA_CFG_LISTENERS='PLAINTEXT://0.0.0.0:9092,INTERNAL://0.0.0.0:9093' \
+  -e KAFKA_INTER_BROKER_LISTENER_NAME='INTERNAL' \
+  -e KAFKA_CFG_AUTO_CREATE_TOPICS_ENABLE=true \
+  -e ALLOW_PLAINTEXT_LISTENER=yes \
+  -p 2181:2181 \
+  -p 443:9092 \
+  -p 9092:9092 \
+  -p 9093:9093 \
+  bitnami/kafka
+```
+
+#### Run tests
+
+```
+npm run integration
+```
+
+### Unit
+
+```
+npm test
 ```
 
 [nvm]: https://github.com/creationix/nvm

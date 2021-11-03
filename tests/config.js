@@ -31,7 +31,7 @@ module.exports = () => ({
   BACKOFFICE_HEADER_KEY: 'backoffice',
   MICROSERVICE_GATEWAY_SERVICE_NAME: 'microservice-gateway',
   // Kafka related vars
-  KAFKA_BROKERS_LIST: KAFKA_HOSTS_CI ?? KAFKA_DEFAULT_HOSTS,
+  KAFKA_BROKERS_LIST: KAFKA_HOSTS_CI || KAFKA_DEFAULT_HOSTS,
   KAFKA_CLIENT_ID: `client-consumer-${randomString()}`,
   KAFKA_GROUP_ID: `dev-consumer-${randomString()}`,
   KAFKA_COMMANDS_TOPIC_NAME: `commands-${randomString()}`,
