@@ -35,7 +35,7 @@ async function onError(sagaId, error, commit) {
   // while the latter prevents the duplications of commands when duplicated messages arrives,
   // since the finite state machine must be in a specific state to receive/recognize the incoming event.
 
-  // On the contrary, in the situations where is required to handle errors manually,
+  // On the contrary, in the situations where it is required to handle errors manually,
   // add here your error handling logic and decide whether to commit
   // (that is skip command execution completed with success) or allow its re-execution
 }

@@ -75,12 +75,12 @@ module.exports = (FMCBuilder) => customService(async function index(service) {
 
   service.decorate('fmClient', client)
   service.addHook('onClose', async() => {
-    log.fatal({ event: 'END' }, 'recurrent payments manager')
+    log.fatal({ event: 'END' })
     await client.stop()
   })
 
   await client.start()
-  log.info({ event: 'READY' }, 'recurrent payments manager is ready to serve')
+  log.info({ event: 'READY' })
 })
 
 function prepareKafkaConfig(config) {
