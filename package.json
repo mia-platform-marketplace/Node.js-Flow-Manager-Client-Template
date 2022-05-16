@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@mia-platform/custom-plugin-lib": "^4.2.0",
-    "@mia-platform/flow-manager-client": "^1.0.0"
+    "@mia-platform/flow-manager-client": "^1.0.3"
   },
   "devDependencies": {
     "@mia-platform/eslint-config-mia": "^3.0.0",
