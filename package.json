@@ -19,21 +19,21 @@
     "version": "npm run update-changelog && npm run update-docker-version && rm -fr Dockerfile.bck && git add CHANGELOG.md Dockerfile"
   },
   "dependencies": {
-    "@mia-platform/custom-plugin-lib": "^4.2.0",
-    "@mia-platform/flow-manager-client": "^1.0.0"
+    "@mia-platform/custom-plugin-lib": "^5.0.0",
+    "@mia-platform/flow-manager-client": "^1.0.3"
   },
   "devDependencies": {
     "@mia-platform/eslint-config-mia": "^3.0.0",
     "@mia-platform/kafkajs-pino-logger": "^1.0.0",
-    "eslint": "^7.32.0",
-    "kafkajs": "^1.15.0",
-    "nock": "^13.1.1",
+    "eslint": "^8.17.0",
+    "kafkajs": "^2.0.2",
+    "nock": "^13.2.6",
     "pre-commit": "^1.2.2",
     "sorted-json": "^0.2.6",
-    "tap": "^15.0.9"
+    "tap": "^16.2.0"
   },
   "engines": {
-    "node": ">=14"
+    "node": ">=16"
   },
   "private": true,
   "eslintConfig": {
