@@ -19,7 +19,7 @@
     "version": "npm run update-changelog && npm run update-docker-version && rm -fr Dockerfile.bck && git add CHANGELOG.md Dockerfile"
   },
   "dependencies": {
-    "@mia-platform/custom-plugin-lib": "^5.0.0",
+    "@mia-platform/custom-plugin-lib": "^5.1.7",
     "@mia-platform/flow-manager-client": "^1.0.3"
   },
   "devDependencies": {
